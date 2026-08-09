@@ -1,0 +1,22 @@
+{
+  "name": "@mambalabsdev/mcp-clay-to-instantly-smartlead-push",
+  "version": "1.0.0",
+  "description": "MCP server for the Mamba Labs Sequencer Lead Push actor on Apify. Pushes enriched lead rows into an Instantly or Smartlead campaign with ICP score gating, deduplication and a zero-write dry run.",
+  "type": "module",
+  "bin": {
+    "mcp-clay-to-instantly-smartlead-push": "./build/index.js"
+  },
+  "scripts": {
+    "build": "tsc && chmod +x build/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["mcp","model-context-protocol","instantly","smartlead","cold-email","outbound","lead-generation","sequencer","apify","clay"],
+  "author": "Mamba Labs <labs@mambamindsetgrowth.com>",
+  "license": "MIT",
+  "homepage": "https://apify.com/mambalabs",
+  "repository": { "type": "git", "url": "https://github.com/mambalabsdev/mcp-clay-to-instantly-smartlead-push" },
+  "engines": { "node": ">=18" },
+  "dependencies": { "@modelcontextprotocol/sdk": "^1.12.0", "zod": "^3.23.8" },
+  "devDependencies": { "@types/node": "^20.14.0", "typescript": "^5.6.0" },
+  "mcpName": "com.mambabuilt/mcp-clay-to-instantly-smartlead-push"
+}

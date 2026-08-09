@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "mamba-clay-to-instantly-smartlead-push": {
+      "command": "npx",
+      "args": ["-y", "@mambalabsdev/mcp-clay-to-instantly-smartlead-push"],
+      "env": { "APIFY_TOKEN": "your-apify-token" }
+    }
+  }
+}
