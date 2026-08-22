@@ -115,12 +115,12 @@ server.registerTool(
     },
     inputSchema: {
       sequencer: z
-        .enum(["instantly", "smartlead"])
-        .describe("Which sequencer to push to. Instantly uses API v2, Smartlead uses API v1."),
+        .enum(["instantly", "smartlead", "heyreach"])
+        .describe("Which sequencer to push to. Instantly uses API v2, Smartlead uses API v1, HeyReach uses its public API. HeyReach is LinkedIn native: it keys a lead on linkedin_person_url rather than on email, so a HeyReach run drops rows with no LinkedIn profile URL and keeps rows with no email at all."),
       api_key: z
         .string()
         .optional()
-        .describe("Your Instantly v2 API key or your Smartlead API key. An Instantly v1 key will not work: v1 was deprecated on January 19, 2026. Required for any run that calls the sequencer. A dry run with deduplicate false makes no calls and needs no key."),
+        .describe("Your Instantly v2 API key, your Smartlead API key or your HeyReach API key. An Instantly v1 key will not work: v1 was deprecated on January 19, 2026. Required for any run that calls the sequencer. A dry run with deduplicate false makes no calls and needs no key."),
       campaign_id: z
         .string()
         .describe("The target campaign in the sequencer. It must already exist. Instantly campaign IDs are UUIDs; Smartlead campaign IDs are numeric."),

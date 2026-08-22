@@ -34,7 +34,7 @@ Maps your column names onto the sequencer's field names, drops leads below your 
 
 | Input | Type | Required | Notes |
 | --- | --- | --- | --- |
-| `sequencer` | string | yes | `instantly` or `smartlead` |
+| `sequencer` | string | yes | `instantly`, `smartlead` or `heyreach`. HeyReach is LinkedIn native and keys a lead on `linkedin_person_url` rather than on email |
 | `campaign_id` | string | yes | The target campaign. It must already exist. |
 | `api_key` | string | see note | Your Instantly v2 key or Smartlead key |
 | `leads` | array | one of | Lead rows. Each needs an `email` at minimum. |
@@ -47,7 +47,7 @@ Maps your column names onto the sequencer's field names, drops leads below your 
 
 `api_key` is required for any run that calls the sequencer. A dry run with `deduplicate` false makes no calls at all and needs no key.
 
-Returns one flat summary row: leads received, dropped for no usable email, dropped by the ICP gate, dropped as duplicates, eligible, created by the sequencer, skipped by the sequencer, and failed, with the vendor's own message per failed address.
+Returns one flat summary row: leads received, dropped for no usable identity (an email, or a LinkedIn profile URL on HeyReach), dropped by the ICP gate, dropped as duplicates, eligible, created by the sequencer, skipped by the sequencer, and failed, with the vendor's own message per failed address.
 
 ## Dry run
 

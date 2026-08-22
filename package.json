@@ -1,6 +1,6 @@
 {
   "name": "@mambalabsdev/mcp-clay-to-instantly-smartlead-push",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "MCP server for the Mamba Labs Sequencer Lead Push actor on Apify. Pushes enriched lead rows into an Instantly or Smartlead campaign with ICP score gating, deduplication and a zero-write dry run.",
   "type": "module",
   "bin": {
