@@ -2,7 +2,7 @@
 
 MCP server for the Mamba Labs [Sequencer Lead Push](https://apify.com/mambalabs/clay-to-instantly-smartlead-push) actor on Apify.
 
-Push enriched lead rows into an existing Instantly or Smartlead campaign. ICP score gating and deduplication are built in, and a dry run shows you the exact payload before you send anything.
+Push enriched lead rows into an existing Instantly, Smartlead, or HeyReach campaign. ICP score gating and deduplication are built in, and a dry run shows you the exact payload before you send anything.
 
 ## Install
 
@@ -35,9 +35,9 @@ Maps your column names onto the sequencer's field names, drops leads below your 
 | Input | Type | Required | Notes |
 | --- | --- | --- | --- |
 | `sequencer` | string | yes | `instantly`, `smartlead` or `heyreach`. HeyReach is LinkedIn native and keys a lead on `linkedin_person_url` rather than on email |
-| `campaign_id` | string | yes | The target campaign. It must already exist. |
-| `api_key` | string | see note | Your Instantly v2 key or Smartlead key |
-| `leads` | array | one of | Lead rows. Each needs an `email` at minimum. |
+| `campaign_id` | string | yes | The target campaign. It must already exist. Instantly campaign IDs are UUIDs; Smartlead and HeyReach campaign IDs are numeric. |
+| `api_key` | string | see note | Your Instantly v2 key, your Smartlead key, or your HeyReach key |
+| `leads` | array | one of | Lead rows. Each needs an `email` at minimum, or a `linkedin_person_url` on HeyReach. |
 | `dataset_id` | string | one of | An Apify dataset ID from an upstream run |
 | `min_icp_score` | number | no | Drop leads scoring below this. Default 0. |
 | `deduplicate` | boolean | no | Check the campaign first. Default true. |
@@ -67,15 +67,18 @@ Pricing is on the [actor's Apify page](https://apify.com/mambalabs/clay-to-insta
 | --- | --- | --- |
 | Instantly | v2 | Needs a **v2** key. Keys from v1 do not work: Instantly deprecated v1 on January 19, 2026. |
 | Smartlead | v1 | Current. Smartlead has no v2. |
+| HeyReach | public API | LinkedIn native. Keys a lead on `linkedin_person_url`, so rows with no LinkedIn profile URL are dropped and rows with no email are kept. |
 
 ## What this server does and does not do
 
-It is a thin client for the Apify actor. It passes your input through and returns the actor's output. The field mapping, the ICP gate, the deduplication and everything either vendor's API needs all live in the actor, not here.
+It is a thin client for the Apify actor. It passes your input through and returns the actor's output. The field mapping, the ICP gate, the deduplication and everything each vendor's API needs all live in the actor, not here.
+
+The tool starts the actor run and polls it to a finished status, so a long run is not cut off at 300 seconds. If the run is still going after 30 minutes, the call stops waiting and returns the run ID with a link to it in the Apify Console, where the results land when it finishes. A run that does not succeed comes back as an error with its run ID and status.
 
 It writes to your sequencer campaign unless `dry_run` is true. It does not create campaigns and it does not write sequence copy.
 
 ## Related
 
-Part of the Mamba Labs GTM actor fleet. The same tool is available alongside fourteen others in [`@mambalabsdev/mcp-gtm-suite`](https://www.npmjs.com/package/@mambalabsdev/mcp-gtm-suite).
+Part of the Mamba Labs GTM actor fleet. The same tool is available alongside twenty others in [`@mambalabsdev/mcp-gtm-suite`](https://www.npmjs.com/package/@mambalabsdev/mcp-gtm-suite).
 
 Built by [Mamba Labs](https://apify.com/mambalabs)
