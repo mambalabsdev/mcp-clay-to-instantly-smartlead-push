@@ -19,7 +19,7 @@ const ACTOR_INPUTS = ["api_key","campaign_id","custom_variables","dataset_id","d
 const TOOL_INPUTS = ["api_key","campaign_id","custom_variables","dataset_id","deduplicate","dry_run","field_mapping","leads","min_icp_score","sequencer"];
 const TOOL_REQUIRED = ["campaign_id","sequencer"];
 const SAMPLE_ARGS = {"sequencer":"instantly","campaign_id":"00000000-0000-0000-0000-000000000000","dry_run":true,"leads":[{"email":"a@example.com"}]};
-const RUN_QUERY = "";
+const RUN_QUERY = "?timeout=1800";
 
 // Speak MCP over stdio to the built server. extraEnv and preload let a test
 // swap in the fake Apify API from helpers/mock-fetch.mjs.

@@ -73,7 +73,7 @@ Pricing is on the [actor's Apify page](https://apify.com/mambalabs/clay-to-insta
 
 It is a thin client for the Apify actor. It passes your input through and returns the actor's output. The field mapping, the ICP gate, the deduplication and everything each vendor's API needs all live in the actor, not here.
 
-The tool starts the actor run and polls it to a finished status, so a long run is not cut off at 300 seconds. If the run is still going after 30 minutes, the call stops waiting and returns the run ID with a link to it in the Apify Console, where the results land when it finishes. A run that does not succeed comes back as an error with its run ID and status.
+The tool starts the actor run and polls it to a finished status, so a long run is not cut off at 300 seconds. The run is allowed 1,800 seconds. If it is still going two minutes after that, the call stops waiting and returns the run ID with a link to it in the Apify Console, where the results land when it finishes. A run that does not succeed comes back as an error with its run ID and status.
 
 It writes to your sequencer campaign unless `dry_run` is true. It does not create campaigns and it does not write sequence copy.
 
