@@ -209,6 +209,7 @@ server.registerTool(
       openWorldHint: true,
     },
     inputSchema: {
+      max_charge_usd: z.number().min(0).optional().describe("Optional. The run stops before any charge that would take this run past this amount, and saves every row already paid for. Leave empty to rely only on the maximum cost per run set in Apify, which the run also honors."),
       sequencer: z
         .enum(["instantly", "smartlead", "heyreach"])
         .describe("Which sequencer to push to. Instantly uses API v2, Smartlead uses API v1, HeyReach uses its public API. HeyReach is LinkedIn native: it keys a lead on linkedin_person_url rather than on email, so a HeyReach run drops rows with no LinkedIn profile URL and keeps rows with no email at all."),
@@ -251,7 +252,7 @@ server.registerTool(
         .describe("Extra column names to pass through as custom variables under their own name. Columns that are neither mapped nor listed here are dropped."),
     },
   },
-  async ({ sequencer, api_key, campaign_id, leads, dataset_id, min_icp_score, deduplicate, dry_run, field_mapping, custom_variables }) => {
+  async ({ sequencer, api_key, campaign_id, leads, dataset_id, min_icp_score, deduplicate, dry_run, field_mapping, custom_variables, max_charge_usd }) => {
     const hasLeads = Array.isArray(leads) && leads.length > 0;
     const hasDataset = dataset_id !== undefined && dataset_id !== "";
     if (!hasLeads && !hasDataset) {
@@ -264,6 +265,7 @@ server.registerTool(
       "0Jv27VeWM5tSZQs9x",
       "Sequencer Lead Push",
       compact({
+        max_charge_usd,
         sequencer,
         api_key,
         campaign_id,
