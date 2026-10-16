@@ -14,9 +14,9 @@ const TOOL_NAME = "push_leads_to_sequencer";
 const ACTOR_ID = "0Jv27VeWM5tSZQs9x";
 // Every input the live actor exposes to a buyer must be exposed by the tool.
 // Excluded by rule: source_tag (internal or test only fields).
-const ACTOR_INPUTS = ["api_key","campaign_id","custom_variables","dataset_id","deduplicate","dry_run","field_mapping","leads","min_icp_score","sequencer"];
+const ACTOR_INPUTS = ["max_charge_usd","api_key","campaign_id","custom_variables","dataset_id","deduplicate","dry_run","field_mapping","leads","min_icp_score","sequencer"];
 // The tool's full input list, so a dropped or renamed parameter fails here.
-const TOOL_INPUTS = ["api_key","campaign_id","custom_variables","dataset_id","deduplicate","dry_run","field_mapping","leads","min_icp_score","sequencer"];
+const TOOL_INPUTS = ["max_charge_usd","api_key","campaign_id","custom_variables","dataset_id","deduplicate","dry_run","field_mapping","leads","min_icp_score","sequencer"];
 const TOOL_REQUIRED = ["campaign_id","sequencer"];
 const SAMPLE_ARGS = {"sequencer":"instantly","campaign_id":"00000000-0000-0000-0000-000000000000","dry_run":true,"leads":[{"email":"a@example.com"}]};
 const RUN_QUERY = "?timeout=1800";

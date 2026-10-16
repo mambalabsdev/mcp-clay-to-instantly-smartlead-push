@@ -44,6 +44,7 @@ Maps your column names onto the sequencer's field names, drops leads below your 
 | `dry_run` | boolean | no | Preview without sending. Default false. |
 | `field_mapping` | object | no | Override the default column map |
 | `custom_variables` | array | no | Extra columns to pass through |
+| `max_charge_usd` | number | no | Optional cost cap in USD for this run. The actor stops before an item that could take its charges past this amount. Omit to rely on the maximum cost per run set in Apify. |
 
 `api_key` is required for any run that calls the sequencer. A dry run with `deduplicate` false makes no calls at all and needs no key.
 
@@ -58,6 +59,13 @@ Use it the first time you point at a new campaign. The payload you see is the re
 ## Billing
 
 You are charged per lead the sequencer confirms it created. Leads dropped by the gate, dropped as duplicates, with no usable email, skipped or rejected by the vendor, and every lead in a dry run are all free.
+
+Price per event on the Apify FREE plan, from the live pricing record; paid Apify plans pay less per event.
+
+| Event | Price (USD) |
+| --- | --- |
+| Actor Start (`apify-actor-start`) | 0.00005 |
+| Lead pushed to sequencer (`lead-pushed`) | 0.01 |
 
 Pricing is on the [actor's Apify page](https://apify.com/mambalabs/clay-to-instantly-smartlead-push). Running this server consumes Apify credits.
 
