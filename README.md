@@ -1,5 +1,7 @@
 # Sequencer Lead Push MCP Server
 
+<a href="https://mcprush.com/to/clay-to-instantly-smartlead-push-mcp?ref=badge"><img width="380" height="200" src="https://mcprush.com/badge/clay-to-instantly-smartlead-push-mcp/card.svg" alt="Clay To Instantly Smartlead Push MCP server" /></a>
+
 MCP server for the Mamba Labs [Sequencer Lead Push](https://apify.com/mambalabs/clay-to-instantly-smartlead-push) actor on Apify.
 
 Push enriched lead rows into an existing Instantly, Smartlead, or HeyReach campaign. ICP score gating and deduplication are built in, and a dry run shows you the exact payload before you send anything.
